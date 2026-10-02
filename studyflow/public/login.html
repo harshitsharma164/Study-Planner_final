@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyFlow — Log in</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="auth-shell">
+    <div class="auth-card">
+
+      <div class="wordmark">
+        <span>StudyFlow</span>
+      </div>
+      <p class="sub">Sign in with your student ID to reach your planner.</p>
+
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" id="showLogin">Log in</button>
+        <button type="button" class="auth-tab" id="showSignup">Sign up</button>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <label>Student ID
+          <input id="loginId" type="text" placeholder="Student / roll number" required>
+        </label>
+        <label>Password
+          <input id="loginPassword" type="password" required>
+        </label>
+        <p class="auth-error" id="loginError"></p>
+        <button class="btn-primary" type="submit">Log in</button>
+      </form>
+
+      <form id="signupForm" class="auth-form hidden">
+        <label>Full name
+          <input id="signupName" type="text" placeholder="Full name" required>
+        </label>
+        <label>Student ID
+          <input id="signupId" type="text" placeholder="Student / roll number" required>
+        </label>
+        <label>Password
+          <input id="signupPassword" type="password" required>
+        </label>
+        <label>Confirm password
+          <input id="signupConfirm" type="password" required>
+        </label>
+        <p class="auth-error" id="signupError"></p>
+        <button class="btn-primary" type="submit">Create account</button>
+      </form>
+
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

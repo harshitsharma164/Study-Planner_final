@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyFlow — Progress</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="auth.js"></script>
+  <script>requireAuth();</script>
+</head>
+<body>
+  <div class="shell">
+
+    <aside class="rail">
+      <div class="wordmark">
+        <a href="index.html">StudyFlow</a>
+      </div>
+      <nav>
+        <a class="nav-link" href="index.html">Dashboard</a>
+        <a class="nav-link" href="planner.html">Planner</a>
+        <a class="nav-link active" href="progress.html">Progress</a>
+      </nav>
+      <div class="rail-foot">
+        <span class="rail-user mono" id="railUser"></span>
+        <a href="#" class="rail-logout" id="logoutLink">Log out</a>
+        <span class="rail-date mono" id="railDate"></span>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <header class="page-head">
+        <div>
+          <h1>Progress</h1>
+          <p class="sub">See how each subject is coming along.</p>
+        </div>
+        <a class="btn-primary" href="planner.html">Add task</a>
+      </header>
+
+      <section class="strip">
+        <div class="strip-item">
+          <strong id="rateCount">0%</strong>
+          <span>Completion rate</span>
+        </div>
+        <div class="strip-item">
+          <strong id="progressDone">0</strong>
+          <span>Completed</span>
+        </div>
+        <div class="strip-item">
+          <strong id="subjectCount">0</strong>
+          <span>Subjects tracked</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Subject-wise progress</h2>
+            <p class="sub">Completed tasks against all tasks in each subject.</p>
+          </div>
+        </div>
+        <div id="subjectProgress" class="subject-progress"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Recently completed</h2>
+            <p class="sub">The last few tasks you checked off.</p>
+          </div>
+        </div>
+        <div id="completedTasks" class="task-list"></div>
+      </section>
+
+      <footer>Built to keep coursework on schedule.</footer>
+
+    </main>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

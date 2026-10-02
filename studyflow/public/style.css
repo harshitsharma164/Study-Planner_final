@@ -1,0 +1,626 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+  --paper: #F5F3ED;
+  --paper-white: #FBFAF6;
+  --rail: #ECE9DF;
+  --ink: #1C1E1B;
+  --muted: #75766D;
+  --line: #DEDACB;
+  --accent: #0F7A6E;
+  --accent-soft: #E1EFEC;
+  --warn: #B4530A;
+  --warn-soft: #F7E9DD;
+  --good: #3C7D4F;
+  --good-soft: #E6F1E7;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 14px/1.55 'Inter', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+.hidden {
+  display: none !important;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   App shell: sidebar rail + main content
+   ============================================================ */
+.shell {
+  display: flex;
+  min-height: 100vh;
+}
+.rail {
+  width: 216px;
+  flex-shrink: 0;
+  background: var(--rail);
+  border-right: 1px solid var(--line);
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+}
+.wordmark {
+  margin-bottom: 44px;
+}
+.wordmark a,
+.wordmark span {
+  font: 700 20px 'Space Grotesk', sans-serif;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.3px;
+  padding-bottom: 9px;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+.rail nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nav-link {
+  color: var(--muted);
+  text-decoration: none;
+  font: 500 13.5px 'Inter', sans-serif;
+  padding: 10px 4px 10px 14px;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.nav-link:hover {
+  color: var(--ink);
+}
+.nav-link.active {
+  color: var(--ink);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+.rail-foot {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rail-user {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.rail-logout {
+  color: var(--muted);
+  font-size: 12px;
+  text-decoration: none;
+  width: fit-content;
+}
+.rail-logout:hover {
+  color: var(--warn);
+}
+.rail-date {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 40px 46px 30px;
+  max-width: 980px;
+}
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.page-head h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+}
+.page-head .sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+.btn-primary,
+.btn-secondary {
+  border: 0;
+  border-radius: 4px;
+  padding: 11px 17px;
+  font: 600 13px 'Inter', sans-serif;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #0c6459;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ============================================================
+   Status strip
+   ============================================================ */
+.strip {
+  display: flex;
+  background: var(--paper-white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  margin-bottom: 26px;
+  overflow: hidden;
+}
+.strip-item {
+  flex: 1;
+  padding: 18px 22px;
+  border-left: 1px solid var(--line);
+}
+.strip-item:first-child {
+  border-left: 0;
+}
+.strip-item strong {
+  display: block;
+  font: 600 26px 'IBM Plex Mono', monospace;
+  margin-bottom: 4px;
+}
+.strip-item span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ============================================================
+   Panels
+   ============================================================ */
+.panel {
+  background: var(--paper-white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+.panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.panel-head h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  letter-spacing: -0.1px;
+}
+.panel-head .sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.text-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+.text-link:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   Task list (classes generated by app.js — keep names in sync)
+   ============================================================ */
+.task-list {
+  display: flex;
+  flex-direction: column;
+}
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 2px;
+  border-bottom: 1px solid var(--line);
+}
+.task-list .task-item:last-child {
+  border-bottom: 0;
+}
+.task-check {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.task-info {
+  flex: 1;
+  min-width: 0;
+}
+.task-info strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.task-info small {
+  display: block;
+  color: var(--muted);
+  margin-top: 3px;
+  font: 500 11px 'IBM Plex Mono', monospace;
+}
+.task-item.is-done .task-info strong {
+  text-decoration: line-through;
+  color: #9b9b90;
+}
+.priority {
+  font: 600 10.5px 'IBM Plex Mono', monospace;
+  padding: 3px 7px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.priority.high {
+  border-color: #e3c1a3;
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.priority.low {
+  border-color: #bcdcc4;
+  background: var(--good-soft);
+  color: var(--good);
+}
+.task-actions {
+  display: flex;
+  gap: 4px;
+}
+.icon-btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+}
+.icon-btn:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.empty {
+  padding: 22px 4px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  border: 1px dashed var(--line);
+  border-radius: 5px;
+}
+
+/* ============================================================
+   Progress bars
+   ============================================================ */
+.progress-track {
+  height: 8px;
+  background: var(--rail);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 14px 0 9px;
+}
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  border-radius: 20px;
+  transition: width 0.25s;
+}
+.percent {
+  font: 600 18px 'IBM Plex Mono', monospace;
+  color: var(--accent);
+}
+.progress-panel .sub {
+  font-size: 12px;
+}
+
+/* ============================================================
+   Planner form
+   ============================================================ */
+.task-form {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1fr 1fr;
+  gap: 16px;
+  align-items: end;
+}
+.task-form label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.task-form input,
+.task-form select,
+.filter-select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 4px;
+  padding: 11px 12px;
+  color: var(--ink);
+  font: 400 13px 'Inter', sans-serif;
+  outline: none;
+}
+.task-form input:focus,
+.task-form select:focus,
+.filter-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+}
+.filter-select {
+  width: auto;
+}
+
+/* ============================================================
+   Subject-wise progress rows
+   ============================================================ */
+.subject-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.subject-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 42px;
+  align-items: center;
+  gap: 14px;
+}
+.subject-name {
+  font: 600 11.5px 'IBM Plex Mono', monospace;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 4px 8px;
+  border-radius: 3px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.subject-row .progress-track {
+  margin: 0;
+  height: 7px;
+}
+.subject-percent {
+  text-align: right;
+  color: var(--muted);
+  font: 500 12px 'IBM Plex Mono', monospace;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 11.5px;
+  padding: 16px 0 6px;
+}
+
+/* ============================================================
+   Log in / sign up page
+   ============================================================ */
+.auth-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--paper-white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 34px 32px;
+}
+.auth-card .wordmark {
+  margin-bottom: 6px;
+}
+.auth-card .sub {
+  margin: 0 0 26px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.auth-tabs {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.auth-tab {
+  background: none;
+  border: 0;
+  padding: 0 0 10px;
+  font: 600 13.5px 'Inter', sans-serif;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.auth-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.auth-form label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.auth-form input {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 4px;
+  padding: 11px 12px;
+  font: 400 13px 'Inter', sans-serif;
+  color: var(--ink);
+  outline: none;
+}
+.auth-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+.auth-form .btn-primary {
+  justify-content: center;
+  margin-top: 4px;
+}
+.auth-error {
+  min-height: 16px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--warn);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 850px) {
+  .rail {
+    width: 180px;
+    padding: 22px 16px;
+  }
+  .main {
+    padding: 28px 22px;
+  }
+  .task-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 620px) {
+  .shell {
+    display: block;
+  }
+  .rail {
+    width: 100%;
+    padding: 14px 18px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+  }
+  .wordmark {
+    margin: 0;
+  }
+  .rail nav {
+    flex-direction: row;
+    gap: 14px;
+  }
+  .nav-link {
+    padding: 6px 0;
+    border-left: 0;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-link.active {
+    border-left: 0;
+    border-bottom-color: var(--accent);
+  }
+  .rail-foot {
+    display: none;
+  }
+  .main {
+    padding: 22px 16px;
+  }
+  .page-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .page-head .btn-primary,
+  .page-head .btn-secondary {
+    align-self: stretch;
+    justify-content: center;
+  }
+  .strip {
+    flex-direction: column;
+  }
+  .strip-item {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .strip-item:first-child {
+    border-top: 0;
+  }
+  .panel {
+    padding: 17px;
+  }
+  .task-form {
+    grid-template-columns: 1fr;
+  }
+  .form-actions {
+    grid-column: auto;
+  }
+  .priority {
+    display: none;
+  }
+  .subject-row {
+    grid-template-columns: 84px 1fr 34px;
+    gap: 8px;
+  }
+  .filter-select {
+    max-width: 120px;
+  }
+}

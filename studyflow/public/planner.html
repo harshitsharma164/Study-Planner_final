@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyFlow — My Planner</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="auth.js"></script>
+  <script>requireAuth();</script>
+</head>
+<body>
+  <div class="shell">
+
+    <aside class="rail">
+      <div class="wordmark">
+        <a href="index.html">StudyFlow</a>
+      </div>
+      <nav>
+        <a class="nav-link" href="index.html">Dashboard</a>
+        <a class="nav-link active" href="planner.html">Planner</a>
+        <a class="nav-link" href="progress.html">Progress</a>
+      </nav>
+      <div class="rail-foot">
+        <span class="rail-user mono" id="railUser"></span>
+        <a href="#" class="rail-logout" id="logoutLink">Log out</a>
+        <span class="rail-date mono" id="railDate"></span>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <header class="page-head">
+        <div>
+          <h1>My Planner</h1>
+          <p class="sub">Break each subject down into tasks you can actually finish.</p>
+        </div>
+        <a class="btn-secondary" href="index.html">Dashboard</a>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2 id="formTitle">Add a study task</h2>
+            <p class="sub">Pick the subject and set a deadline.</p>
+          </div>
+        </div>
+
+        <form id="taskForm" class="task-form">
+          <input type="hidden" id="editId">
+
+          <label>Task name
+            <input id="taskTitle" maxlength="100" placeholder="e.g. Revise Python loops" required>
+          </label>
+
+          <label>Subject
+            <select id="taskSubject" required>
+              <option value="">Choose subject</option>
+              <option value="Python">Python</option>
+              <option value="Web Technology">Web Technology</option>
+              <option value="DAA" title="Design and Analysis of Algorithms">DAA</option>
+              <option value="AMP" title="Advanced Microprocessor">AMP</option>
+              <option value="WPT" title="Wifi Penetration Testing">WPT</option>
+              <option value="Computer Networks">Computer Networks</option>
+            </select>
+          </label>
+
+          <label>Deadline
+            <input id="taskDate" type="date" required>
+          </label>
+
+          <label>Priority
+            <select id="taskPriority">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+            </select>
+          </label>
+
+          <div class="form-actions">
+            <button class="btn-primary" type="submit" id="submitTask">Add task</button>
+            <button class="btn-secondary hidden" type="button" id="cancelEdit">Cancel edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Your tasks</h2>
+            <p class="sub">Edit, complete, or remove a task.</p>
+          </div>
+          <select id="taskFilter" class="filter-select" aria-label="Filter tasks">
+            <option value="all">All tasks</option>
+            <option value="pending">Pending</option>
+            <option value="done">Completed</option>
+          </select>
+        </div>
+        <div id="allTasks" class="task-list"></div>
+      </section>
+
+      <footer>Built to keep coursework on schedule.</footer>
+
+    </main>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

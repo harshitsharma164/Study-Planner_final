@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyFlow — Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="auth.js"></script>
+  <script>requireAuth();</script>
+</head>
+<body>
+  <div class="shell">
+
+    <aside class="rail">
+      <div class="wordmark">
+        <a href="index.html">StudyFlow</a>
+      </div>
+      <nav>
+        <a class="nav-link active" href="index.html">Dashboard</a>
+        <a class="nav-link" href="planner.html">Planner</a>
+        <a class="nav-link" href="progress.html">Progress</a>
+      </nav>
+      <div class="rail-foot">
+        <span class="rail-user mono" id="railUser"></span>
+        <a href="#" class="rail-logout" id="logoutLink">Log out</a>
+        <span class="rail-date mono" id="railDate"></span>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <header class="page-head">
+        <div>
+          <h1>Dashboard</h1>
+          <p class="sub">A running record of what's due and what's done.</p>
+        </div>
+        <a class="btn-primary" href="planner.html">Add task</a>
+      </header>
+
+      <section class="strip">
+        <div class="strip-item">
+          <strong id="totalCount">0</strong>
+          <span>Total tasks</span>
+        </div>
+        <div class="strip-item">
+          <strong id="doneCount">0</strong>
+          <span>Completed</span>
+        </div>
+        <div class="strip-item">
+          <strong id="pendingCount">0</strong>
+          <span>Pending</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Today's focus</h2>
+            <p class="sub">Tasks due today</p>
+          </div>
+          <a class="text-link" href="planner.html">View planner</a>
+        </div>
+        <div id="todayTasks" class="task-list"></div>
+      </section>
+
+      <section class="panel progress-panel">
+        <div class="panel-head">
+          <div>
+            <h2>Overall progress</h2>
+            <p class="sub">Across every subject you've logged</p>
+          </div>
+          <strong id="progressPercent" class="percent">0%</strong>
+        </div>
+        <div class="progress-track">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <p id="progressCaption" class="sub">0 of 0 tasks completed</p>
+      </section>
+
+      <footer>Built to keep coursework on schedule.</footer>
+
+    </main>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
